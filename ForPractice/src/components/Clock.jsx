@@ -6,14 +6,15 @@ class Clock extends React.Component{
         this.state = {date: new Date()}
     }
 
-    tick(){
-        this.state({date: new Date(),});
-    }
 
     componentDidMount(){
-        setInterval(() => this.setState({date: new Date()}), 1000);
+        this.clockTimer = setInterval(() => this.setState({date: new Date()}), 1000);
     }
 
+    // If we go to other pages then this function will be called and it would stop the interval while we are away. When we come back then the 'componentDidMount()' will be called again.
+    componentWillUnmount() {
+        clearInterval(this.clockTimer);
+    }
 
     render() {
         return (
