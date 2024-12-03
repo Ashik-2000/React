@@ -14,8 +14,8 @@ class Clock extends React.Component {
         clearInterval(this.clockTimer);
     }
 
-    handleClick = () => { 
-        this.setState({local: 'en-US'});
+    handleClick = (lan) => { 
+        this.setState({local: lan});
     }
 
     render() {
@@ -28,7 +28,7 @@ class Clock extends React.Component {
                         {date.toLocaleTimeString(local)}
                     </span>
                 </h1>
-                <button onClick={this.handleClick}>Click Here</button>
+                <button onClick={this.handleClick.bind('en-US')}>English</button>
             </div>
         )
     }
