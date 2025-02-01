@@ -1,16 +1,12 @@
 import React from "react";
+import Clock from "./components/Clock";
 
-
-class App extends React.Component{
-  render() {
-    return (
-      <>
-        <h1>
-          <span>Hello {new Date().toLocaleTimeString(this.props.en)}</span>
-        </h1>
-      </>
-    );
-  }
+function App() {
+  return (
+    <>
+      <Clock bn="bn-BD" en="en-US" />
+    </>
+  );
 }
 
 export default App;
