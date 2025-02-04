@@ -13,15 +13,15 @@ class Clock extends React.Component {
             { date: new Date() }
         )
     }
-    handleClick = () => {
-        this.setState({ locale: "en-US" })
+    handleClick = (locale) => {
+        this.setState({ locale})
     }
     render() {
         const { date, locale } = this.state;
         return (
             <>
                 <h1>Time: {date.toLocaleTimeString(locale)}</h1>
-                <button onClick={this.handleClick}>Click here</button>
+                <button onClick={() => this.handleClick('en-US')}>Click here</button>
             </>
         );
     }
