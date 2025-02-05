@@ -1,13 +1,13 @@
 import React from "react";
-import CLocklist from "./components/ClockLIst"
+import Form from "./components/form";
 
 function App() {
-  const array = [1, 2, 3];
-  return (
-    <div>
-      <CLocklist quantity={array} />
-    </div>
-  );
+    const array = [1, 2, 3];
+    return (
+        <div>
+            <Form />
+        </div>
+    );
 }
 
 export default App;

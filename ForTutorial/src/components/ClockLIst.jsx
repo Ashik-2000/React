@@ -1,5 +1,5 @@
-import React from 'react';
-import Clock from "./Clock"
+import React from "react";
+import Clock from "./Clock";
 
 export default function ClockList({ quantity = [] }) {
     return (
@@ -8,5 +8,5 @@ export default function ClockList({ quantity = [] }) {
                 <Clock key={key} />
             ))}
         </>
-    )
+    );
 }
