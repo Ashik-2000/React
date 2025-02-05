@@ -1,10 +1,11 @@
 import React from "react";
-import Clock from "./components/Clock";
+import CLocklist from "./components/ClockLIst"
 
 function App() {
+  const array = [1, 2, 3];
   return (
     <div>
-      <Clock />
+      <CLocklist quantity={array} />
     </div>
   );
 }
