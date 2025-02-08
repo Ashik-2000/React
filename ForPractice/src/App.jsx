@@ -1,11 +1,9 @@
-import React from "react"
-import Clock from "./components/Clock"
+import React from "react";
+import Emoji from "./components/Emoji";
+import Text from "./components/Text";
 
 function App() {
+    return <div><Text /></div>;
+}
 
-  // return <div><Clock locale="bn-BD" /></div>
-  return <div><Clock /></div>
-
-} 
-
-export default App
+export default App;
