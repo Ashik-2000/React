@@ -20,16 +20,16 @@ export default class Calculator extends React.Component {
         return (
             <>
                 <TemperatureInput
-                    scale="c"
                     temperature={celsius}
+                    scale="c"
                     onTemperatureChange={this.handleChange}
                 />
                 <TemperatureInput
-                    scale="f"
                     temperature={fahrenheit}
+                    scale="f"
                     onTemperatureChange={this.handleChange}
                 />
-                <BoillongVerdict celsius={parseFloat(temperature)} />
+                <BoillongVerdict celsius={parseFloat(celsius)} />
             </>
         );
     }
