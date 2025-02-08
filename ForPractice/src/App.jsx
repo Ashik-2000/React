@@ -1,9 +1,12 @@
-import React from "react";
-import Emoji from "./components/Emoji";
-import Text from "./components/Text";
+import Emoji from "./components/composition/Emoji";
+import Text from "./components/composition/Text";
 
 function App() {
-    return <div><Text /></div>;
+    return (
+        <Emoji>
+            {({addEmoji}) => <Text addEmoji={addEmoji}/>}
+        </Emoji>
+    );
 }
 
 export default App;
