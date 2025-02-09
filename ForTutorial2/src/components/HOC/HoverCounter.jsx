@@ -1,4 +1,4 @@
-import withCounter from "./HOC/withCounter";
+import withCounter from "./withCounter";
 
 const HoverCounter = (props) => {
     const { count, incrementCount } = props;

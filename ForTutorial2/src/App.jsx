@@ -1,5 +1,5 @@
-import ClickCounter from "./components/ClickCounter";
-import HoverCounter from "./components/HoverCounter";
+import ClickCounter from "./components/RenderProps/ClickCounter";
+import HoverCounter from "./components/RenderProps/HoverCounter";
 
 export default function App() {
     return (
