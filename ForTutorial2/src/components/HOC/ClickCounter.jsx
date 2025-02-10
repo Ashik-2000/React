@@ -1,7 +1,6 @@
 import withCounter from "./withCounter";
 
-const ClickCounter = (props) => {
-    const { count, incrementCount } = props;
+const ClickCounter = ({ count, incrementCount }) => {
     return (
         <>
             <button onClick={incrementCount}>Clicked {count} times</button>
