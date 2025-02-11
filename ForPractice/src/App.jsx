@@ -1,7 +1,17 @@
+import Counter from "./components/Counter";
+import ClickCounter from "./components/ClickCounter";
+
 function App() {
     return (
         <>
-            Hellow
+            <Counter
+                render={(count, incrementCount) => (
+                    <ClickCounter
+                        count={count}
+                        incrementCount={incrementCount}
+                    />
+                )}
+            />
         </>
     );
 }
