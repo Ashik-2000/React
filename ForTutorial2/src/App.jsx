@@ -1,14 +1,19 @@
-// import ClickCounter from "./components/RenderProps/ClickCounter";
-// import HoverCounter from "./components/RenderProps/HoverCounter";
-// import Counter from "./components/RenderProps/Counter";
-import withCounter from "./components/HOC/withCounter";
-import ClickCounter from "./components/HOC/ClickCounter";
-import HoverCounter from "./components/HOC/HoverCounter";
+// HOC
+// import ClickCounter from "./components/HOC/ClickCounter";
+// import HoverCounter from "./components/HOC/HoverCounter";
+// Render Props
+import ClickCounter from "./components/RenderProps/ClickCounter";
+import HoverCounter from "./components/RenderProps/HoverCounter";
+import Counter from "./components/RenderProps/Counter";
 
 export default function App() {
     return (
         <>
-            {/* <Counter
+            {/* HOC */}
+            {/* <HoverCounter />
+            <ClickCounter /> */}
+            {/* Render Props */}
+            <Counter
                 render={(count, incrementCount) => (
                     <HoverCounter
                         count={count}
@@ -23,9 +28,7 @@ export default function App() {
                         incrementCount={incrementCount}
                     />
                 )}
-            /> */}
-            <HoverCounter />
-            <ClickCounter />
+            />
         </>
     );
 }
