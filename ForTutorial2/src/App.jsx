@@ -13,7 +13,7 @@ export default function App() {
             {/* <HoverCounter />
             <ClickCounter /> */}
             {/* Render Props */}
-            <Counter
+            {/* <Counter
                 render={(count, incrementCount) => (
                     <HoverCounter
                         count={count}
@@ -28,7 +28,16 @@ export default function App() {
                         incrementCount={incrementCount}
                     />
                 )}
-            />
+            /> */}
+            {/* Render Props second variants */}
+            <Counter>
+                {(count, incrementCount) => (
+                    <ClickCounter
+                        count={count}
+                        incrementCount={incrementCount}
+                    />
+                )}
+            </Counter>
         </>
     );
 }
