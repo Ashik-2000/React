@@ -1,7 +1,9 @@
-function HoverCounter({ count, incrementCount }) {
+function HoverCounter({ count, incrementCount, theme }) {
     return (
         <>
-            <h1 onMouseOver={incrementCount}>Hovered {count} times</h1>
+            <h1 onMouseOver={incrementCount}>
+                Hovered {count} times and theme is {theme}
+            </h1>
         </>
     );
 }
