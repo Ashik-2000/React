@@ -1,9 +1,9 @@
-import Todo from "./useStates/TodoFunctionalComponent";
-import Counter from "./useStates/Counter";
+import ClassComponent from "./useEffect/ClassComponent";
+import FunctionalComponent from "./useEffect/FunctionalComponent";
 function App() {
     return (
         <>
-            <Counter />
+            <FunctionalComponent />
         </>
     );
 }
