@@ -3,7 +3,7 @@ import FunctionalComponent from "./useEffect/FunctionalComponent";
 function App() {
     return (
         <>
-            <FunctionalComponent />
+            <ClassComponent />
         </>
     );
 }
