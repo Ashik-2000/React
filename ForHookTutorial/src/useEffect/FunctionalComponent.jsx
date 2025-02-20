@@ -11,13 +11,13 @@ export default function FunctionalComponent() {
     };
     useEffect(() => {
         document.title = `Clicked ${count} times`;
-    }, [count]);
+    }, [count]); // Working as didComponentMount() + didComponentUpdate() method; 
     useEffect(() => {
         const interval = setInterval(() => {
             Tick();
         }, 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, []); // Working as didComponentMount() + didComponentUnmount() method;
     return (
         <>
             <p>Time: {time.toLocaleTimeString()}</p>
