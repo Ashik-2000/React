@@ -1,7 +1,11 @@
-export default function Input({ input, placeholder }) {
+import React from "react";
+
+function Input({ input, placeholder }, ref) {
     return (
         <>
-            <input type={input} placeholder={placeholder} />
+            <input ref={ref} type={input} placeholder={placeholder} />
         </>
     );
 }
+
+export default React.forwardRef(Input);
