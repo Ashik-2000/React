@@ -1,8 +1,10 @@
-
+import Form from "./useRef/Form";
+import Clock from "./useRef/Clock";
 function App() {
     return (
         <>
-            Hello
+            <Form />
+            <Clock />
         </>
     );
 }
