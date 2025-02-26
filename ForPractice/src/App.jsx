@@ -1,11 +1,8 @@
-import Form from "./components/Form";
-import Clock from "./components/Clock";
-
+import Counter from "./components/Counter";
 export default function App() {
     return (
         <div className="app">
-            <Form />
-            <Clock />
+            <Counter />
         </div>
     );
 }
