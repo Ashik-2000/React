@@ -1,8 +1,8 @@
-import ComplexCounter from "./useReduce/ComplexCounter";
+import Counter from "./useReduce/Counter";
 function App() {
     return (
         <>
-            <ComplexCounter />
+            <Counter />
         </>
     );
 }

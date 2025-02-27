@@ -1,14 +1,18 @@
-import React from "react";
+import { counterContext } from "../App";
+import { useContext } from "react";
 
-function Button({ handleClick, children }) {
-    console.log(`Rendering button ${children}`);
+function Button() {
+    const countContext = useContext(counterContext);
     return (
         <>
-            <button type="button" onClick={handleClick}>
-                {children}
+            <button type="button" onClick={() => countContext.dispatch("increment")}>
+                Increment
+            </button>
+            <button type="button" onClick={() => countContext.dispatch("decrement")}>
+                Decrement
             </button>
         </>
     );
 }
 
-export default React.memo(Button);
+export default Button;
