@@ -1,5 +1,7 @@
 import { useReducer } from "react";
 
+// state and actions are primitive values.
+
 const initialValue = 0;
 const reducer = (state, action) => {
     switch (action) {
