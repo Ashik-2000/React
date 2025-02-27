@@ -1,8 +1,8 @@
-import Counter from "./useReduce/Counter";
+import MultipleReduce from "./useReduce/MultipleReduce";
 function App() {
     return (
         <>
-            <Counter />
+            <MultipleReduce />
         </>
     );
 }
