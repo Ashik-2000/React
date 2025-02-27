@@ -1,10 +1,8 @@
-import Form from "./useRef/Form";
-import Clock from "./useRef/Clock";
+import ComplexCounter from "./useReduce/ComplexCounter";
 function App() {
     return (
         <>
-            <Form />
-            <Clock />
+            <ComplexCounter />
         </>
     );
 }
