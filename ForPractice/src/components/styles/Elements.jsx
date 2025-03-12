@@ -21,3 +21,10 @@ export const P = styled.p`
     color: #aaa;
     margin: 20px 0;
 `;
+
+export const Image = styled.img`
+    position: absolute;
+    top: 30px;
+    right: -20px;
+    z-index: 0;
+`;
