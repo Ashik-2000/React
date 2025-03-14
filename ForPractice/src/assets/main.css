@@ -1,0 +1,9 @@
+/* Reset default margins and ensure full page context */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white; /* Matches your white page background */
+    display: flex;
+    justify-content: center; /* Centers the navbar horizontally */
+    min-height: 100vh; /* Ensures the page takes full height for demo */
+}

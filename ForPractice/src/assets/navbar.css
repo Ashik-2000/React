@@ -1,0 +1,70 @@
+/* Navbar styling */
+.navbar {
+    background-color: #f5f5f5; /* Light gray - subtle, not bright or dark */
+    padding: 1rem 2rem; /* Minimal padding for a sleek look */
+    border-radius: 8px; /* Soft corners for minimalism */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+    width: fit-content; /* Shrinks to content size for centering */
+    margin-top: 20px; /* Optional: space from top, adjust as needed */
+    border-radius: 70px;
+}
+
+/* List styling */
+.navbar ul {
+    list-style: none; /* Removes bullets */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Horizontal layout */
+    justify-content: center;
+    align-items: center;
+    gap: 2rem; /* Space between items */
+}
+
+/* List item styling */
+.navbar li {
+    margin: 0; /* No extra margins */
+}
+
+.navbar button {
+    /* CSS */
+    align-items: center;
+    background-color: #16437e;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    font-weight: bold;
+    justify-content: center;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 0.5em 1.5em;
+    text-align: center;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+        box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+        color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    vertical-align: middle;
+}
+.navbar button:hover {
+    background-color: #002433;
+    color: #ffffff;
+}
+
+/* Link styling */
+.navbar a {
+    text-decoration: none; /* No underlines */
+    color: black; /* Black font per your preference */
+    font-family: Arial, sans-serif; /* Clean, minimalist font */
+    font-size: 1rem; /* Standard size, adjustable */
+}
+
+a.active {
+    color: red;
+}
+
+/* Optional hover effect for usability */
+.navbar a:hover {
+    text-decoration: underline; /* Slight gray shift - keeps it subtle */
+}
