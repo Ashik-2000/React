@@ -1,6 +1,8 @@
 import Form from "../Form";
 import Illustrations from "../Illustration";
 import TextInput from "../TextInput";
+import CheckBox from "../CheckBox";
+import Button from "../Button";
 import classes from "../../styles/Signup.module.css";
 
 export default function Signup() {
@@ -25,6 +27,20 @@ export default function Signup() {
                         placeholder="Enter Password"
                         icon="lock"
                     />
+                    <TextInput
+                        type="password"
+                        placeholder="Confirm Password"
+                        icon="lock"
+                    />
+                    <CheckBox
+                        type="checkbox"
+                        text="I agree to the Terms &amp; Condidtions"
+                    />
+                    <Button>Submit now</Button>
+                    <div className="info">
+                        Already have an account?
+                        <a href="login.html"> Login</a> instead.
+                    </div>
                 </Form>
             </div>
         </>
