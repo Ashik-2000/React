@@ -3,13 +3,14 @@ import Form from "../Form";
 import TextInput from "../TextInput";
 import Button from "../Button";
 import classes from "../../styles/Login.module.css";
+import loginImage from "../../assets/login.svg";
 
 export default function Login() {
     return (
         <>
             <h1>Login to your account</h1>
             <div className="column">
-                <Illustration />
+                <Illustration image={loginImage} />
                 <Form className={classes.login}>
                     <TextInput
                         type="text"

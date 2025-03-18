@@ -1,16 +1,17 @@
 import Form from "../Form";
-import Illustrations from "../Illustration"; 
+import Illustrations from "../Illustration";
 import TextInput from "../TextInput";
 import CheckBox from "../CheckBox";
 import Button from "../Button";
 import classes from "../../styles/Signup.module.css";
+import signImage from "../../assets/signup.svg";
 
 export default function Signup() {
     return (
         <>
             <h1>Craete an account</h1>
             <div className="column">
-                <Illustrations />
+                <Illustrations image={signImage} />
                 <Form className={`${classes.signup}`}>
                     <TextInput
                         type="text"
