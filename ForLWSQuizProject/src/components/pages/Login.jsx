@@ -22,7 +22,9 @@ export default function Login() {
                         placeholder="Enter Password"
                         icon="lock"
                     />
-                    <Button>Submit now</Button>
+                    <Button>
+                        <span>Submit now</span>
+                    </Button>
                     <div class="info">
                         Don't have an account?
                         <a href="signup.html">Signup</a> instead.
