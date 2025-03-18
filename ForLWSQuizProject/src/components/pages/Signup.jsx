@@ -1,5 +1,5 @@
 import Form from "../Form";
-import Illustrations from "../Illustration";
+import Illustrations from "../Illustration"; 
 import TextInput from "../TextInput";
 import CheckBox from "../CheckBox";
 import Button from "../Button";
