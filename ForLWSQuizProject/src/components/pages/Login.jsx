@@ -15,7 +15,7 @@ export default function Login() {
                     <TextInput
                         type="text"
                         placeholder="Enter Email"
-                        icon="alternate_email" 
+                        icon="alternate_email"
                     />
                     <TextInput
                         type="password"
@@ -27,7 +27,7 @@ export default function Login() {
                     </Button>
                     <div class="info">
                         Don't have an account?
-                        <a href="signup.html">Signup</a> instead.
+                        <a href="signup.html"> Signup</a> instead.
                     </div>
                 </Form>
             </div>
