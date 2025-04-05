@@ -1,4 +1,3 @@
-// import image from "../assets/3.jpg";
 import classes from "../styles/Video.module.css";
 
 export default function Video({ title, id, noq }) {
