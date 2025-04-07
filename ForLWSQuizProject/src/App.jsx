@@ -22,7 +22,7 @@ function App() {
                     />
                     <Route path="/login" element={<Login />} />
                     <Route
-                        path="/quiz"
+                        path="/quiz/:id"
                         element={<PrivateRouter component={Quiz} />}
                     />
                     <Route
