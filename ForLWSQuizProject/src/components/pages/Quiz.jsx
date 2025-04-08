@@ -1,10 +1,12 @@
 import Answers from "../Answers";
 import ProgressBar from "../ProgressBar";
 import MiniPlayer from "../MiniPlayer";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import useQuestions from "../../../hooks/useQuestions";
 import { useEffect, useReducer, useState } from "react";
 import _ from "lodash";
+import { useAuth } from "../../contexts/AuthContext";
+import { getDatabase, set, ref } from "firebase/database";
 
 const initialState = null;
 
@@ -32,6 +34,8 @@ export default function Quiz() {
     const { loading, error, questions } = useQuestions(id);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [qna, dispatch] = useReducer(reducer, initialState);
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch({
@@ -59,7 +63,7 @@ export default function Quiz() {
     // handle pev question button
     function prevQuestion() {
         if (currentQuestion >= 1 && currentQuestion <= questions.length) {
-            setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+            setCurrentQuestion((prevCurrent) => prevCurrent - 1);
         }
     }
 
@@ -68,6 +72,24 @@ export default function Quiz() {
         questions.length > 0
             ? ((currentQuestion + 1) / questions.length) * 100
             : 0;
+
+    // submit quiz
+    async function submit() {
+        const { uid } = currentUser;
+
+        const db = getDatabase();
+        const resultRef = ref(db, `result/${uid}`);
+
+        await set(resultRef, {
+            [id]: qna,
+        });
+        navigate({
+            pathname: `/result/${id}`,
+            state: {
+                qna,
+            },
+        });
+    }
 
     return (
         <>
@@ -84,6 +106,7 @@ export default function Quiz() {
                     <ProgressBar
                         next={nextQuestion}
                         prev={prevQuestion}
+                        submit = {submit}
                         progress={percentege}
                     />
                     <MiniPlayer />

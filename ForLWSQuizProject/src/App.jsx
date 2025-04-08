@@ -26,7 +26,7 @@ function App() {
                         element={<PrivateRouter component={Quiz} />}
                     />
                     <Route
-                        path="/result"
+                        path="/result/:id"
                         element={<PrivateRouter component={Result} />}
                     />
                 </Routes>
