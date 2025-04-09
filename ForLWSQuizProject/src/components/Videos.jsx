@@ -32,7 +32,8 @@ export default function Videos() {
                             <Video
                                 title={video.title}
                                 id={video.youtubeID}
-                                noq={video.noq}
+                                    noq={video.noq}
+                                    key={video.youtubeID}
                             />
                         )
                     )}

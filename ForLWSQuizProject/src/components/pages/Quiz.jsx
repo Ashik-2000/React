@@ -78,7 +78,7 @@ export default function Quiz() {
         const { uid } = currentUser;
 
         const db = getDatabase();
-        const resultRef = ref(db, `result/${uid}`);
+        const resultRef = ref(db, `result/${uid}/`);
 
         await set(resultRef, {
             [id]: qna,
