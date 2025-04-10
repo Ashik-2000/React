@@ -1,15 +1,20 @@
 import Summary from "../Summary";
 import Analysis from "../Analysis";
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import useAnswers from "../../../hooks/useAnswers";
+import useSubmittedAnswers from "../../../hooks/useSubmittedAnswers";
+import { useAuth } from "../../contexts/AuthContext";
 import _ from "lodash";
 
 export default function Result() {
     const { id } = useParams();
-    const location = useLocation();
-    const { qna } = location.state || {};
-    const { loading, error, answers } = useAnswers(id);
-    console.log(answers);
+    const { currentUser } = useAuth();
+    const {
+        submitted: qna,
+        loading,
+        error,
+    } = useSubmittedAnswers(id, currentUser?.uid);
+    const { loading: aLoading, error: aError, answers } = useAnswers(id);
 
     function calculate() {
         let score = 0;
@@ -18,13 +23,13 @@ export default function Result() {
                 checkedIndexes = [];
             question.options.forEach((option, index2) => {
                 if (option.correct) correctIndexes.push(index2);
-                if (qna[index1].options[index2].checked) {
+                if (qna[index1]?.options[index2]?.checked) {
                     checkedIndexes.push(index2);
                     option.checked = true;
                 }
             });
             if (_.isEqual(correctIndexes, checkedIndexes)) {
-                score = score + 5;
+                score += 5;
             }
         });
         return score;
@@ -34,11 +39,11 @@ export default function Result() {
 
     return (
         <>
-            {loading && <div>Loading...</div>}
-            {error && <div>There was an error...</div>}
-            {answers && answers.length > 0 && (
+            {(loading || aLoading) && <div>Loading...</div>}
+            {(error || aError) && <div>There was an error...</div>}
+            {answers && answers.length > 0 && qna && qna.length > 0 && (
                 <>
-                    <Summary score={userScore} noq={ answers.length} />
+                    <Summary score={userScore} noq={answers.length} />
                     <Analysis answers={answers} />
                 </>
             )}

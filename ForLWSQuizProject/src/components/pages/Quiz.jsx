@@ -80,15 +80,11 @@ export default function Quiz() {
         const db = getDatabase();
         const resultRef = ref(db, `result/${uid}/`);
 
+        console.log("QNA in Quiz : ", qna);
         await set(resultRef, {
             [id]: qna,
         });
-        navigate({
-            pathname: `/result/${id}`,
-            state: {
-                qna,
-            },
-        });
+        navigate(`/result/${id}`);
     }
 
     return (
@@ -100,13 +96,14 @@ export default function Quiz() {
                     <h1>{qna[currentQuestion].title}</h1>
                     <h4>Question can have multiple answers</h4>
                     <Answers
+                        input={true}
                         options={qna[currentQuestion].options}
                         handleChange={handleAnswerChange}
                     />
                     <ProgressBar
                         next={nextQuestion}
                         prev={prevQuestion}
-                        submit = {submit}
+                        submit={submit}
                         progress={percentege}
                     />
                     <MiniPlayer />
