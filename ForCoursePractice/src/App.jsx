@@ -1,58 +1,51 @@
 import { useState } from "react";
+import ItemList from "./ItemList";
 
-const initialArtists = [
-    { id: 0, name: "Marta Colvin Andrade" },
-    { id: 1, name: "Lamidi Olonade Fakeye" },
-    { id: 2, name: "Louise Nevelson" },
+const initialList = [
+    { id: 0, title: "Big Bellies", seen: false },
+    { id: 1, title: "Lunar Landscape", seen: false },
+    { id: 2, title: "Terracotta Army", seen: true },
 ];
 
-export default function List() {
-    const [name, setName] = useState("");
-    const [artists, setArtists] = useState(initialArtists);
-    const [id, setID] = useState(3);
-    const [target, setTarget] = useState(0);
+export default function BucketList() {
+    const [myList, setMyList] = useState(initialList);
+    const [yourList, setYourList] = useState(initialList);
 
-    const handleClick = () => {
+    function handleToggleMyList(artworkId, nextSeen) {
+        const myNextList = myList.map((art) => {
+            if (art.id == artworkId) {
+                return {
+                    ...art,
+                    seen: nextSeen,
+                };
+            } else {
+                return art;
+            }
+        });
+        setMyList(myNextList);
+    }
 
-        const newArtists = [
-            ...artists.slice(0, target-1),
-            { id: id, name: name },
-            ...artists.slice(target-1),
-        ];
-        setArtists(newArtists);
-        setName("");
-        setID(id + 1);
-        console.log(target);
-    };
+    function handleToggleYourList(artworkId, nextSeen) {
+        const yourNextList = yourList.map((art) => {
+            if (art.id == artworkId) {
+                return {
+                    ...art,
+                    seen: nextSeen,
+                };
+            } else {
+                return art;
+            }
+        });
+        setYourList(yourNextList);
+    }
 
     return (
         <>
-            <h1>Inspiring sculptors:</h1>
-            <input value={name} onChange={(e) => setName(e.target.value)} />
-            <h2>Input Target</h2>
-            <input value={target} onChange={(e) => setTarget(e.target.value)} />
-            <br />
-            <br />
-            <button onClick={handleClick}>Insert</button>
-            <ul>
-                {artists.map((artist) => (
-                    <li key={artist.id}>{artist.name}</li>
-                ))}
-            </ul>
+            <h1>Art Bucket List</h1>
+            <h2>My list of art to see:</h2>
+            <ItemList artworks={myList} onToggle={handleToggleMyList} />
+            <h2>Your list of art to see:</h2>
+            <ItemList artworks={yourList} onToggle={handleToggleYourList} />
         </>
     );
 }
-
-// function handleClick() {
-//     const insertAt = 1; // Could be any index
-//     const nextArtists = [
-//         // Items before the insertion point:
-//         ...artists.slice(0, insertAt),
-//         // New item:
-//         { id: nextId++, name: name },
-//         // Items after the insertion point:
-//         ...artists.slice(insertAt),
-//     ];
-//     setArtists(nextArtists);
-//     setName("");
-// }
