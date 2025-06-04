@@ -1,26 +1,39 @@
 import { useState } from "react";
-import { sculptureList } from "./js/sclupture";
 
-export default function Gallery() {
-    const [index, setIndex] = useState(0);
+let initialArtists = [
+    { id: 0, name: "Marta Colvin Andrade" },
+    { id: 1, name: "Lamidi Olonade Fakeye" },
+    { id: 2, name: "Louise Nevelson" },
+];
 
-    function handleClick() {
-        setIndex(index + 1);
-    }
+export default function List() {
+    const [artists, setArtists] = useState(initialArtists);
 
-    let sculpture = sculptureList[index];
     return (
         <>
-            <button onClick={handleClick}>Next</button>
-            <h2>
-                <i>{sculpture.name} </i>
-                by {sculpture.artist}
-            </h2>
-            <h3>
-                ({index + 1} of {sculptureList.length})
-            </h3>
-            <img src={sculpture.url} alt={sculpture.alt} />
-            <p>{sculpture.description}</p>
+            <h1>Inspiring sculptors:</h1>
+            <ul>
+                {artists.map((artist) => (
+                    <li key={artist.id}>
+                        {artist.name}{" "}
+                        <button
+                            onClick={() => {
+                                setArtists(
+                                    artists.filter((ar) => artist.id !== ar.id)
+                                );
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </>
     );
 }
+
+// () => {
+//                                 setArtists(
+//                                     artists.filter((a) => a.id !== artist.id)
+//                                 );
+//                             }
