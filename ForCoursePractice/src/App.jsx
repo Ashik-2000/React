@@ -1,39 +1,42 @@
 import { useState } from "react";
 
-let initialArtists = [
-    { id: 0, name: "Marta Colvin Andrade" },
-    { id: 1, name: "Lamidi Olonade Fakeye" },
-    { id: 2, name: "Louise Nevelson" },
-];
+let initialCounters = [0, 0, 0];
 
-export default function List() {
-    const [artists, setArtists] = useState(initialArtists);
+export default function CounterList() {
+    const [counters, setCounters] = useState(initialCounters);
+
+    const handleIncrement = (index) => {
+        const newCounters = counters.map((c, i) => {
+            if (i == index) {
+                return c + 1;
+            } else {
+                return c;
+            }
+        });
+        setCounters(newCounters);
+    };
 
     return (
-        <>
-            <h1>Inspiring sculptors:</h1>
-            <ul>
-                {artists.map((artist) => (
-                    <li key={artist.id}>
-                        {artist.name}{" "}
-                        <button
-                            onClick={() => {
-                                setArtists(
-                                    artists.filter((ar) => artist.id !== ar.id)
-                                );
-                            }}
-                        >
-                            Delete
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </>
+        <ul>
+            {counters.map((counter, i) => (
+                <li key={i}>
+                    {counter + "    "}{" "}
+                    <button onClick={() => handleIncrement(i)}>+1</button>
+                </li>
+            ))}
+        </ul>
     );
 }
 
-// () => {
-//                                 setArtists(
-//                                     artists.filter((a) => a.id !== artist.id)
-//                                 );
-//                             }
+// function handleIncrementClick(index) {
+//     const nextCounters = counters.map((c, i) => {
+//         if (i === index) {
+//             // Increment the clicked counter
+//             return c + 1;
+//         } else {
+//             // The rest haven't changed
+//             return c;
+//         }
+//     });
+//     setCounters(nextCounters);
+// }
