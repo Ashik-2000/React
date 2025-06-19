@@ -1,55 +1,31 @@
 import { useState } from "react";
+import Panel from "./Panel";
 
-const initialItems = [
-    { title: "pretzels", id: 0 },
-    { title: "crispy seaweed", id: 2 },
-    { title: "granola bar", id: 3 },
-];
-
-export default function Menu() {
-    const [items, setItems] = useState(initialItems);
-    const [selectedID, setSelectedID] = useState(0);
-
-    const selectedItem = items.find((item) => item.id === selectedID);
-
-    function handleItemChange(id, e) {
-        setItems(
-            items.map((item) => {
-                if (item.id === id) {
-                    return {
-                        ...item,
-                        title: e.target.value,
-                    };
-                } else {
-                    return item;
-                }
-            })
-        );
-    }
-
+export default function Accordion() {
+    const [activeIndex, setActiveIndex] = useState(0);
     return (
         <>
-            <h2>What's your travel snack?</h2>
-            <ul>
-                {items.map((item) => (
-                    <li key={item.id}>
-                        <input
-                            value={item.title}
-                            onChange={(e) => {
-                                handleItemChange(item.id, e);
-                            }}
-                        />{" "}
-                        <button
-                            onClick={() => {
-                                setSelectedID(item.id);
-                            }}
-                        >
-                            Choose
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <p>You picked {selectedItem.title}.</p>
+            <h2>Almaty, Kazakhstan</h2>
+            <Panel title="About" isShow={activeIndex === 1} onShow={()=> setActiveIndex(1)}>
+                With a population of about 2 million, Almaty is Kazakhstan's
+                largest city. From 1929 to 1997, it was its capital city.
+            </Panel>
+            <Panel title="Etymology" isShow={activeIndex === 2} onShow={()=> setActiveIndex(2)}>
+                The name comes from <span lang="kk-KZ">алма</span>, the Kazakh
+                word for "apple" and is often translated as "full of apples". In
+                fact, the region surrounding Almaty is thought to be the
+                ancestral home of the apple, and the wild{" "}
+                <i lang="la">Malus sieversii</i> is considered a likely
+                candidate for the ancestor of the modern domestic apple.
+            </Panel>
+            <Panel title="Biology" isShow={activeIndex === 3} onShow={()=> setActiveIndex(3)}>
+                The name comes from <span lang="kk-KZ">алма</span>, the Kazakh
+                word for "apple" and is often translated as "full of apples". In
+                fact, the region surrounding Almaty is thought to be the
+                ancestral home of the apple, and the wild{" "}
+                <i lang="la">Malus sieversii</i> is considered a likely
+                candidate for the ancestor of the modern domestic apple.
+            </Panel>
         </>
     );
 }
