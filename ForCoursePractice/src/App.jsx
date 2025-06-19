@@ -1,51 +1,55 @@
 import { useState } from "react";
-import ItemList from "./ItemList";
 
-const initialList = [
-    { id: 0, title: "Big Bellies", seen: false },
-    { id: 1, title: "Lunar Landscape", seen: false },
-    { id: 2, title: "Terracotta Army", seen: true },
+const initialItems = [
+    { title: "pretzels", id: 0 },
+    { title: "crispy seaweed", id: 2 },
+    { title: "granola bar", id: 3 },
 ];
 
-export default function BucketList() {
-    const [myList, setMyList] = useState(initialList);
-    const [yourList, setYourList] = useState(initialList);
+export default function Menu() {
+    const [items, setItems] = useState(initialItems);
+    const [selectedID, setSelectedID] = useState(0);
 
-    function handleToggleMyList(artworkId, nextSeen) {
-        const myNextList = myList.map((art) => {
-            if (art.id == artworkId) {
-                return {
-                    ...art,
-                    seen: nextSeen,
-                };
-            } else {
-                return art;
-            }
-        });
-        setMyList(myNextList);
-    }
+    const selectedItem = items.find((item) => item.id === selectedID);
 
-    function handleToggleYourList(artworkId, nextSeen) {
-        const yourNextList = yourList.map((art) => {
-            if (art.id == artworkId) {
-                return {
-                    ...art,
-                    seen: nextSeen,
-                };
-            } else {
-                return art;
-            }
-        });
-        setYourList(yourNextList);
+    function handleItemChange(id, e) {
+        setItems(
+            items.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        title: e.target.value,
+                    };
+                } else {
+                    return item;
+                }
+            })
+        );
     }
 
     return (
         <>
-            <h1>Art Bucket List</h1>
-            <h2>My list of art to see:</h2>
-            <ItemList artworks={myList} onToggle={handleToggleMyList} />
-            <h2>Your list of art to see:</h2>
-            <ItemList artworks={yourList} onToggle={handleToggleYourList} />
+            <h2>What's your travel snack?</h2>
+            <ul>
+                {items.map((item) => (
+                    <li key={item.id}>
+                        <input
+                            value={item.title}
+                            onChange={(e) => {
+                                handleItemChange(item.id, e);
+                            }}
+                        />{" "}
+                        <button
+                            onClick={() => {
+                                setSelectedID(item.id);
+                            }}
+                        >
+                            Choose
+                        </button>
+                    </li>
+                ))}
+            </ul>
+            <p>You picked {selectedItem.title}.</p>
         </>
     );
 }
