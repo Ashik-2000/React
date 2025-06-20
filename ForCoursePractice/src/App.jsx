@@ -1,31 +1,41 @@
 import { useState } from "react";
-import Panel from "./Panel";
 
-export default function Accordion() {
-    const [activeIndex, setActiveIndex] = useState(0);
+export default function App() {
+    const [isPaused, setIsPaused] = useState(false);
     return (
-        <>
-            <h2>Almaty, Kazakhstan</h2>
-            <Panel title="About" isShow={activeIndex === 1} onShow={()=> setActiveIndex(1)}>
-                With a population of about 2 million, Almaty is Kazakhstan's
-                largest city. From 1929 to 1997, it was its capital city.
-            </Panel>
-            <Panel title="Etymology" isShow={activeIndex === 2} onShow={()=> setActiveIndex(2)}>
-                The name comes from <span lang="kk-KZ">алма</span>, the Kazakh
-                word for "apple" and is often translated as "full of apples". In
-                fact, the region surrounding Almaty is thought to be the
-                ancestral home of the apple, and the wild{" "}
-                <i lang="la">Malus sieversii</i> is considered a likely
-                candidate for the ancestor of the modern domestic apple.
-            </Panel>
-            <Panel title="Biology" isShow={activeIndex === 3} onShow={()=> setActiveIndex(3)}>
-                The name comes from <span lang="kk-KZ">алма</span>, the Kazakh
-                word for "apple" and is often translated as "full of apples". In
-                fact, the region surrounding Almaty is thought to be the
-                ancestral home of the apple, and the wild{" "}
-                <i lang="la">Malus sieversii</i> is considered a likely
-                candidate for the ancestor of the modern domestic apple.
-            </Panel>
-        </>
+        <div>
+            {isPaused ? <p> Break Time! </p> : <Counter />}
+            <label>
+                <input
+                    type="checkbox"
+                    checked={isPaused}
+                    onChange={(e) => {
+                        setIsPaused(e.target.checked);
+                    }}
+                />
+                Take a break
+            </label>
+        </div>
+    );
+}
+
+function Counter() {
+    const [score, setScore] = useState(0);
+    const [hover, setHover] = useState(false);
+
+    let className = "counter";
+    if (hover) {
+        className += " hover";
+    }
+
+    return (
+        <div
+            className={className}
+            onPointerEnter={() => setHover(true)}
+            onPointerLeave={() => setHover(false)}
+        >
+            <h1>{score}</h1>
+            <button onClick={() => setScore(score + 1)}>Add one</button>
+        </div>
     );
 }
