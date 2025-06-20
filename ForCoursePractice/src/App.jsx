@@ -1,41 +1,32 @@
 import { useState } from "react";
+import Chat from "./Chat";
+import ContactList from "./ContactList";
 
-export default function App() {
-    const [isPaused, setIsPaused] = useState(false);
+export default function Messenger() {
+    const [to, setTo] = useState(contacts[0]);
+    const [message, setMessage] = useState({ 0: "", 1: "", 3: "" });
+
+    const handlChange = (contactId, text) => {
+        setMessage((prev) => ({
+            ...prev,
+            [contactId]: text,
+        }));
+    };
     return (
         <div>
-            {isPaused ? <p> Break Time! </p> : <Counter />}
-            <label>
-                <input
-                    type="checkbox"
-                    checked={isPaused}
-                    onChange={(e) => {
-                        setIsPaused(e.target.checked);
-                    }}
-                />
-                Take a break
-            </label>
+            <ContactList contacts={contacts} onSelect={setTo} />
+            <Chat
+                key={to.id}
+                contact={to}
+                message={message[to.id]}
+                handleChange={handlChange}
+            />
         </div>
     );
 }
 
-function Counter() {
-    const [score, setScore] = useState(0);
-    const [hover, setHover] = useState(false);
-
-    let className = "counter";
-    if (hover) {
-        className += " hover";
-    }
-
-    return (
-        <div
-            className={className}
-            onPointerEnter={() => setHover(true)}
-            onPointerLeave={() => setHover(false)}
-        >
-            <h1>{score}</h1>
-            <button onClick={() => setScore(score + 1)}>Add one</button>
-        </div>
-    );
-}
+const contacts = [
+    { id: 0, name: "Taylor", email: "taylor@mail.com" },
+    { id: 1, name: "Alice", email: "alice@mail.com" },
+    { id: 2, name: "Bob", email: "bob@mail.com" },
+];
