@@ -1,6 +1,8 @@
+// Import this in Main.jsx
+
 import { useState } from "react";
-import AddTask from "./useReducer/AddTask.jsx";
-import TaskList from "./useReducer/TaskList.jsx";
+import AddTask from "./AddTask.jsx";
+import TaskList from "./TaskList.jsx";
 
 const initialTasks = [
     { id: 0, text: "Visit Kafka Museum", done: false },
@@ -8,7 +10,7 @@ const initialTasks = [
     { id: 2, text: "Lennon Wall pic", done: false },
 ];
 
-export default function TaskApp() {
+export default function TaskUseState() {
     const [tasks, setTasks] = useState(initialTasks);
 
     const getNextId = (data) => {

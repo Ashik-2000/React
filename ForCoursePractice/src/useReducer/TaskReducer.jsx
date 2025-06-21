@@ -1,6 +1,9 @@
-import { useState } from "react";
-import AddTask from "./useReducer/AddTask.jsx";
-import TaskList from "./useReducer/TaskList.jsx";
+// Import this in Main.jsx
+
+import { useReducer } from "react";
+import AddTask from "./AddTask.jsx";
+import TaskList from "./TaskList.jsx";
+import taskReducer from "./reducerFunction.js";
 
 const initialTasks = [
     { id: 0, text: "Visit Kafka Museum", done: false },
@@ -8,8 +11,8 @@ const initialTasks = [
     { id: 2, text: "Lennon Wall pic", done: false },
 ];
 
-export default function TaskApp() {
-    const [tasks, setTasks] = useState(initialTasks);
+export default function TaskReducer() {
+    const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
 
     const getNextId = (data) => {
         const maxId = data.reduce(
@@ -21,29 +24,25 @@ export default function TaskApp() {
     };
 
     const handleAddTask = (text) => {
-        setTasks([
-            ...tasks,
-            {
-                id: getNextId(tasks),
-                text: text,
-                done: false,
-            },
-        ]);
+        dispatch({
+            type: "added",
+            id: getNextId(tasks),
+            text: text,
+        });
     };
 
     const handleEditTask = (editTask) => {
-        const newTasks = tasks.map((task) => {
-            if (task.id === editTask.id) {
-                return editTask;
-            } else {
-                return task;
-            }
+        dispatch({
+            type: "changed",
+            task: editTask,
         });
-        setTasks(newTasks);
     };
 
     const handleDelete = (taskID) => {
-        setTasks(tasks.filter((task) => task.id !== taskID));
+        dispatch({
+            type: "delete",
+            id: taskID,
+        });
     };
 
     return (
