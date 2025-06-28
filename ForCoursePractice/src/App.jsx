@@ -1,60 +1,33 @@
-import { useState } from "react";
-import AddTask from "./useReducer/AddTask.jsx";
-import TaskList from "./useReducer/TaskList.jsx";
+import { useRef, useState } from "react";
 
-const initialTasks = [
-    { id: 0, text: "Visit Kafka Museum", done: false },
-    { id: 1, text: "Watch a puppet show", done: false },
-    { id: 2, text: "Lennon Wall pic", done: false },
-];
+export default function App() {
+    const [starTime, setStartTime] = useState(null);
+    const [nowTime, setNowTime] = useState(null);
+    let intervalRef = useRef(null);
 
-export default function TaskApp() {
-    const [tasks, setTasks] = useState(initialTasks);
+    const handleStartWatch = () => {
+        setStartTime(Date.now());
+        setNowTime(Date.now());
 
-    const getNextId = (data) => {
-        const maxId = data.reduce(
-            (prev, current) => (prev && prev > current.id ? prev : current.id),
-            0
-        );
-
-        return maxId + 1;
+        intervalRef.current = setInterval(() => {
+            setNowTime(Date.now());
+        }, 10);
     };
 
-    const handleAddTask = (text) => {
-        setTasks([
-            ...tasks,
-            {
-                id: getNextId(tasks),
-                text: text,
-                done: false,
-            },
-        ]);
+    const handleStopWatch = () => {
+        clearInterval(intervalRef.current);
     };
 
-    const handleEditTask = (editTask) => {
-        const newTasks = tasks.map((task) => {
-            if (task.id === editTask.id) {
-                return editTask;
-            } else {
-                return task;
-            }
-        });
-        setTasks(newTasks);
-    };
-
-    const handleDelete = (taskID) => {
-        setTasks(tasks.filter((task) => task.id !== taskID));
-    };
+    let timePassed = 0;
+    if (starTime != null && nowTime != null) {
+        timePassed = (nowTime - starTime) / 1000;
+    }
 
     return (
         <>
-            <h1>To Do List</h1>
-            <AddTask onAdd={handleAddTask} />
-            <TaskList
-                tasks={tasks}
-                onDelete={handleDelete}
-                onEditTask={handleEditTask}
-            />
+            <h1>Time passed: {timePassed.toFixed(3)}</h1>
+            <button onClick={handleStartWatch}>Start</button>
+            <button onClick={handleStopWatch}>Stop</button>
         </>
     );
 }

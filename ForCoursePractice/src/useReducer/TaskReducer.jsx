@@ -2,6 +2,7 @@
 
 import { useReducer } from "react";
 import AddTask from "./AddTask.jsx";
+import { DistaptchContext, TasksContext } from "./Contexts.js";
 import TaskList from "./TaskList.jsx";
 import taskReducer from "./reducerFunction.js";
 
@@ -31,29 +32,29 @@ export default function TaskReducer() {
         });
     };
 
-    const handleEditTask = (editTask) => {
-        dispatch({
-            type: "changed",
-            task: editTask,
-        });
-    };
+    // const handleEditTask = (editTask) => {
+    //     dispatch({
+    //         type: "changed",
+    //         task: editTask,
+    //     });
+    // };
 
-    const handleDelete = (taskID) => {
-        dispatch({
-            type: "delete",
-            id: taskID,
-        });
-    };
+    // const handleDelete = (taskID) => {
+    //     dispatch({
+    //         type: "delete",
+    //         id: taskID,
+    //     });
+    // };
 
     return (
         <>
             <h1>To Do List</h1>
-            <AddTask onAdd={handleAddTask} />
-            <TaskList
-                tasks={tasks}
-                onDelete={handleDelete}
-                onEditTask={handleEditTask}
-            />
+            <TasksContext.Provider value={tasks}>
+                <DistaptchContext.Provider value={dispatch}>
+                    <AddTask onAdd={handleAddTask} />
+                    <TaskList tasks={tasks} />
+                </DistaptchContext.Provider>
+            </TasksContext.Provider>
         </>
     );
 }
