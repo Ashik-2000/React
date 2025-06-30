@@ -6,6 +6,9 @@ export default function App() {
     let intervalRef = useRef(null);
 
     const handleStartWatch = () => {
+        if (intervalRef.current) {
+            return;
+        }
         setStartTime(Date.now());
         setNowTime(Date.now());
 
@@ -16,6 +19,7 @@ export default function App() {
 
     const handleStopWatch = () => {
         clearInterval(intervalRef.current);
+        intervalRef.current = null;
     };
 
     let timePassed = 0;
