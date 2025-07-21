@@ -2,15 +2,15 @@ import { useState } from "react";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
 
-const initialTasks = [
-    { id: 1, text: "Going to gym", status: false },
-    { id: 2, text: "Doing Homework", status: false },
-    { id: 3, text: "Night Football", status: true },
-    { id: 4, text: "Out for Dinner", status: false },
+const initialTask = [
+    { id: 1, text: "Goto Gym", status: false },
+    { id: 2, text: "Have Dinner", status: false },
+    { id: 3, text: "Play Football", status: true },
+    { id: 4, text: "Read Book", status: false },
 ];
 
 export default function App() {
-    const [tasks, setTasks] = useState(initialTasks);
+    const [tasks, setTasks] = useState(initialTask);
 
     function getID(data) {
         const maxID = data.reduce(
@@ -32,20 +32,23 @@ export default function App() {
     };
 
     const handleEditTask = (editTask) => {
-        const newTask = tasks.map((task) => {
+        const newTasks = tasks.map((task) => {
             if (task.id === editTask.id) {
                 return editTask;
             } else {
                 return task;
             }
         });
-        setTasks(newTask);
+        setTasks(newTasks);
     };
 
     const handleDelete = (taskID) => {
         const newTasks = tasks.filter((task) => task.id !== taskID);
         setTasks(newTasks);
     };
+
+    console.log(initialTask);
+    console.log(tasks);
 
     return (
         <>

@@ -6,6 +6,7 @@ export default function AddTask({ onAdd }) {
         <>
             <input
                 type="text"
+                placeholder="add new task"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
