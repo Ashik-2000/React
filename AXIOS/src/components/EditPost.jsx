@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function EditPost({ post, onEditPost }) {
     const [title, setTitle] = useState(post.title);
     const [body, setBody] = useState(post.body);
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const updatedPost = {
@@ -18,6 +18,7 @@ export default function EditPost({ post, onEditPost }) {
         setBody("");
     };
 
+    
     return (
         <div>
             <h2>Edit post</h2>

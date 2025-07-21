@@ -15,7 +15,7 @@ function App() {
                 ? Number(posts[posts.length - 1].id) + 1
                 : 1;
             const finalPost = {
-                id,
+                id: id.toString(),
                 ...newPost,
             };
 
@@ -34,20 +34,43 @@ function App() {
         }
     };
 
-    const handleDeletePost = (postId) => {
+    const handleDeletePost = async (postId) => {
         if (confirm("Are you sure you want to delete the post?")) {
-            const newPosts = posts.filter((post) => post.id !== postId);
-            setPosts(newPosts);
+            try {
+                await axios.delete(`http://localhost:8000/posts/${postId}`);
+                const newPosts = posts.filter((post) => post.id !== postId);
+                setPosts(newPosts);
+            } catch (error) {
+                console.log(error);
+                if (error.response) {
+                    setError(`${error.message} - ${error.response.data}`);
+                } else {
+                    setError(error.message);
+                }
+            }
         } else {
             console.log("You chose not to delete the post!");
         }
     };
 
-    const handleEditPost = (updatedPost) => {
-        const updatedPosts = posts.map((post) => {
-            post.id === updatedPost.id ? updatedPost : post;
-        });
-        setPosts(updatedPosts);
+    const handleEditPost = async (updatedPost) => {
+        try {
+            const response = await axios.patch(
+                `http://localhost:8000/posts/${updatedPost.id}`,
+                updatedPost
+            );
+            const updatedPosts = posts.map((post) =>
+                post.id === response.data.id ? response.data : post
+            );
+            setPosts(updatedPosts);
+            setPost(null);
+        } catch (error) {
+            if (error.response) {
+                setError(`${error.message} - ${error.response.data}`);
+            } else {
+                setError(error.message);
+            }
+        }
     };
 
     useEffect(() => {
