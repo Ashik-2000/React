@@ -1,0 +1,16 @@
+*{
+    font-size: 1.2rem;
+}
+
+button{
+    margin-left: 1em;
+}
+
+li{
+    margin: 0.5em 0;
+}
+
+ul{
+    list-style: none;
+    padding-left: 2px;
+}
